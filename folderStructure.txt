@@ -1,0 +1,32 @@
+Component
+    - layout.js
+    - homeLayout.js
+    - homeComponent
+	-home
+	-login
+	-signup
+    -doctorComponent
+	-dashboard
+	-messages
+	-appointments.js
+	-searchPatients
+	-recordings
+    -patientComponent
+	-dashboard
+	-upcomingAppointments
+	-myHealthRecords
+    -videoComponent
+	-videoScreen
+    -feedbackComponent
+	-feedbackForm
+
+Pages:
+    -index(home)
+    -login
+    -signup
+    -dashboard
+    -appointment
+    -messages
+    -feedback
+    -recordings
+    -searchpatients
