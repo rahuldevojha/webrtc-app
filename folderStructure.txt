@@ -1,24 +1,26 @@
 Component
     - layout.js
     - homeLayout.js
+    - header.js
+    - homeHeader.js
     - homeComponent
 	-home
-	-login
-	-signup
+        -login
+        -signup
     -doctorComponent
-	-dashboard
-	-messages
-	-appointments.js
-	-searchPatients
-	-recordings
+        -dashboard
+        -messages
+        -appointments.js
+        -searchPatients
+        -recordings
     -patientComponent
-	-dashboard
-	-upcomingAppointments
-	-myHealthRecords
+        -dashboard
+        -upcomingAppointments
+        -myHealthRecords
     -videoComponent
-	-videoScreen
+	    -videoScreen
     -feedbackComponent
-	-feedbackForm
+	    -feedbackForm
 
 Pages:
     -index(home)
