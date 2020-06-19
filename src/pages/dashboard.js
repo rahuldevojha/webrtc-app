@@ -1,10 +1,19 @@
-import React from "react"
-import DashBoard from "../components/doctorComponents/dashboard"
+import React, { useState } from "react"
+import HeadSidebar from "../components/layout"
 
-const Dashboard = () => (
-  <div>
-    <DashBoard />
-  </div>
-)
+const Dashboard = () => {
+  const [doctor] = useState([
+    "Dashboard",
+    "Message",
+    "Appoinment",
+    "Search",
+    "Report",
+  ])
+  return (
+    <div>
+      <HeadSidebar value={doctor} />
+    </div>
+  )
+}
 
 export default Dashboard
