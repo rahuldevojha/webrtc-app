@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
+import "../pages/style.css"
 
 const drawerWidth = 240
 
@@ -40,25 +41,19 @@ const Sidebar = props => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            <ListItem button>
-              <ListItemText>
-                <Link to="/messages">{props.value[0]}</Link>
-              </ListItemText>
-            </ListItem>
             {props.value.map(text => (
               <ListItem button key={text}>
                 <ListItemText>
-                  <Link to="/messages">{text}</Link>
+                  <Link
+                    to={`/${text.toLowerCase()}`}
+                    state={{ user: props.user }}
+                    className="sidebarLink"
+                  >
+                    {text}
+                  </Link>
                 </ListItemText>
               </ListItem>
             ))}
-            {/* {props.value.map(text => (
-              <ListItem button key={text}>
-                <ListItemText>
-                  <Link to="/messages">{text}</Link>
-                </ListItemText>
-              </ListItem>
-            ))} */}
           </List>
         </div>
       </Drawer>

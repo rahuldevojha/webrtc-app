@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import SearchIcon from "@material-ui/icons/Search"
 import InputBase from "@material-ui/core/InputBase"
+import firebase from "firebase"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,8 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   search: {
     position: "absolute",
-    top: "8px",
-    right: "16px",
+    top: "15px",
+    right: "125px",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
@@ -54,11 +55,15 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  button: {
+    marginLeft: "1350px",
+    fontSize: "larger",
+  },
 }))
 
 const Header = props => {
   const classes = useStyles()
-
+  console.log(props.value)
   return (
     <>
       <CssBaseline />
@@ -80,6 +85,15 @@ const Header = props => {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
+          <button
+            className={classes.button}
+            onClick={async () => {
+              await firebase.auth().signOut()
+              window.location.href = "/"
+            }}
+          >
+            Sign out
+          </button>
         </Toolbar>
       </AppBar>
     </>

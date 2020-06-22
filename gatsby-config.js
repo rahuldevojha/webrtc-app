@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.development`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -27,8 +31,28 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: `${process.env.API_KEY}`,
+          authDomain: `${process.env.AUTH_DOMAIN}`,
+          databaseURL: `${process.env.DATABASE_URL}`,
+          projectId: `${process.env.PROJECT_ID}`,
+          storageBucket: `${process.env.STORAGE_BUCKET}`,
+          messagingSenderId: `${process.env.MESSAGING_SENDER_ID}`,
+          appId: `${process.env.APP_ID}`,
+          measurementId: `${process.env.MEASUREMENT_ID}`,
+        },
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+        ignore: `[**/.*]`,
+      },
+    },
   ],
 }
