@@ -8,7 +8,11 @@ firebase.initializeApp({
 })
 
 class SignIn extends Component {
-  state = { isSignedIn: false, isFetch: false, name: "doctor" }
+  constructor(props) {
+    super(props)
+    this.state = { isSignedIn: false, isFetch: false, name: this.props.user }
+    console.log(this.state)
+  }
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -29,6 +33,7 @@ class SignIn extends Component {
 
   componentDidUpdate = () => {
     if (this.state.isSignedIn) {
+      console.log(this.state.name)
       window.localStorage.setItem("user", this.state.name)
       window.location.href = "/dashboard"
     } else {

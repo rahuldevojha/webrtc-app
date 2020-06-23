@@ -10,7 +10,7 @@ const Layout = props => {
     <div>
       {props.user === "doctor" ? (
         <div>
-          <Header value="Doctor Dashboard" />
+          <Header value="Doctor Dashboard " />
           <Sidebar value={doctor} user={props.user} />
           <Footer />
         </div>

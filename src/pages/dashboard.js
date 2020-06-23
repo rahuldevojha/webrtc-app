@@ -2,11 +2,8 @@ import React from "react"
 import Layout from "../components/layout"
 import "./style.css"
 
-const Dashboard = ({ location }) => {
-  console.log("HEHRERERHERHERHRERHERHERHERERERH")
+const Dashboard = () => {
   const user = window.localStorage.getItem("user")
-
-  console.log(location)
   return (
     <div className="container">
       {user === "doctor" ? (

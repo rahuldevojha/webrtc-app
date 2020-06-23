@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
   },
   appBar: {
+    position: "absolute",
     zIndex: theme.zIndex.drawer + 1,
   },
   search: {
@@ -56,18 +57,19 @@ const useStyles = makeStyles(theme => ({
     },
   },
   button: {
-    marginLeft: "1350px",
-    fontSize: "larger",
+    position: "absolute",
+    fontSize: "22px",
+    top: "16px",
+    right: "15px",
   },
 }))
 
 const Header = props => {
   const classes = useStyles()
-  console.log(props.value)
   return (
     <>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
             {props.value}
@@ -89,6 +91,7 @@ const Header = props => {
             className={classes.button}
             onClick={async () => {
               await firebase.auth().signOut()
+              window.localStorage.clear()
               window.location.href = "/"
             }}
           >
