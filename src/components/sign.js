@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import { userAction } from "../redux/action"
+import { connect } from "react-redux"
+import { navigate } from "gatsby"
 
 firebase.initializeApp({
   apiKey: `${process.env.API_KEY}`,
@@ -10,8 +13,7 @@ firebase.initializeApp({
 class SignIn extends Component {
   constructor(props) {
     super(props)
-    this.state = { isSignedIn: false, isFetch: false, name: this.props.user }
-    console.log(this.state)
+    this.state = { isSignedIn: false, isFetch: false, user: this.props.user }
   }
   uiConfig = {
     signInFlow: "popup",
@@ -27,21 +29,36 @@ class SignIn extends Component {
 
   componentDidMount = async () => {
     firebase.auth().onAuthStateChanged(currentUser => {
+      console.log("data transfer to userAction")
+      if (currentUser) {
+        const data = {
+          user: this.props.user,
+          name: firebase.auth().currentUser.displayName,
+          photoUrl: firebase.auth().currentUser.photoURL,
+        }
+        this.props.userAction(data)
+      }
       this.setState({ isSignedIn: !!currentUser, isFetch: true })
     })
   }
 
-  componentDidUpdate = () => {
+  componentDidUpdate = prevProps => {
+    if (prevProps.name != this.props.name) {
+      this.setState({ name: this.props.name })
+    }
+
     if (this.state.isSignedIn) {
-      console.log(this.state.name)
-      window.localStorage.setItem("user", this.state.name)
-      window.location.href = "/dashboard"
+      navigate("/dashboard", {
+        state: { user: this.state.user },
+      })
     } else {
       window.localStorage.clear()
     }
   }
 
   render() {
+    console.log("User Name")
+    console.log(this.props.name)
     return (
       <div>
         {this.state.isFetch === true ? (
@@ -61,4 +78,14 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn
+const mapStateOfProps = state => {
+  console.log("state data")
+  console.log(state)
+  return {
+    name: state.name,
+  }
+}
+
+export default connect(mapStateOfProps, {
+  userAction,
+})(SignIn)

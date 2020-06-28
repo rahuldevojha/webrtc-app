@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography"
 import SearchIcon from "@material-ui/icons/Search"
 import InputBase from "@material-ui/core/InputBase"
 import firebase from "firebase"
+import userAction from "../redux/action"
+import { connect } from "react-redux"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -72,7 +74,7 @@ const Header = props => {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            {props.value}
+            {props.name}
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -103,4 +105,16 @@ const Header = props => {
   )
 }
 
-export default Header
+const mapStateOfProps = state => {
+  return {
+    name: state.name,
+  }
+}
+
+const mapDispatchOfProps = dispatch => {
+  return {
+    userAction: () => dispatch(userAction()),
+  }
+}
+
+export default connect(mapStateOfProps, mapDispatchOfProps)(Header)
