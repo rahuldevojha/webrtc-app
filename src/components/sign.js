@@ -43,17 +43,8 @@ class SignIn extends Component {
   }
 
   componentDidUpdate = prevProps => {
-    if (prevProps.name != this.props.name) {
-      this.setState({ name: this.props.name })
-    }
-
-    if (this.state.isSignedIn) {
-      navigate("/dashboard", {
-        state: { user: this.state.user },
-      })
-    } else {
-      window.localStorage.clear()
-    }
+    console.log("fetching...")
+    if (this.state.isSignedIn) navigate("/dashboard")
   }
 
   render() {

@@ -1,5 +1,3 @@
-import PROFILE from "./action"
-
 const initialState = {
   user: "doctor",
   name: "vinay",
@@ -7,19 +5,18 @@ const initialState = {
 }
 
 const userReducer = (state = initialState, action) => {
-  console.log("ASSF")
+  console.log("Action check")
   console.log(action)
   switch (action.type) {
     case "PROFILE": {
-      console.log("ENTERIGN REDUCER PROGILE")
       const newState = {
         ...state,
         name: action.payload.name,
         user: action.payload.user,
         photoUrl: action.payload.photoUrl,
       }
+      console.log("State Update")
       console.log(newState)
-      console.log("YHIS WAS NEW STAET")
       return newState
     }
     default:
